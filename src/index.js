@@ -1,34 +1,17 @@
 const express = require("express")
+const groceryRoute = require("./routes/groceryRoute")
 
 const app = express()
 const PORT = 5000
 
 //middleware
 app.use(express.json())
-app.use((req, res, next) => {
-  console.log(`${req.method}:${req.url}`)
-  next()
-})
+
+//use the groceryRoute from routes NOTE: This should be invoked before all the middleware
+app.use("/api/groceries", groceryRoute)
 
 
 app.listen(PORT, () => console.log(`Running express server on port: ${PORT}`))
 
-const groceryList = [
-  {
-    item: 'milk',
-    quantity: 2,
-  },
-  {
-    item: 'eggs',
-    quantity: 4,
-  }
-]
 
-app.get("/groceries", (req, res) => {
-  res.send(groceryList)
-})
 
-app.post("/groceries", (req, res) => {
-  console.log(req.body)
-  res.sendStatus(201)
-})
