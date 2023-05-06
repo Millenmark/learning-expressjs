@@ -25,6 +25,11 @@ const superMarkets = [
   }
 ]
 
+router.use((req, res, next) => {
+  if (req.session.user) next()
+  else res.sendStatus(401)
+})
+
 router.get("/", (req, res) => {
   // console.log(req.query)
   const { miles } = req.query //the value of miles is a string so you need to convert it into number
