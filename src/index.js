@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const groceryRoute = require("./routes/groceryRoute")
 const marketRoute = require("./routes/marketRoute")
+const authRoute = require("./routes/authRoute")
 
 const app = express()
 const PORT = 5000
@@ -19,6 +20,7 @@ app.use(session({
 //use the groceryRoute from routes NOTE: This should be invoked before all the middleware
 app.use("/api/groceries", groceryRoute)
 app.use("/api/markets", marketRoute)
+app.use("/api/auth", authRoute)
 
 
 
