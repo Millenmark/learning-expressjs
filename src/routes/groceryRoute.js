@@ -14,6 +14,9 @@ const groceryList = [
 ]
 
 router.get("/", (req, res) => {
+  res.cookie("visited", true, {
+    maxAge: 10000,
+  })
   res.send(groceryList)
 })
 
