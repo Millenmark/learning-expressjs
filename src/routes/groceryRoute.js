@@ -13,11 +13,16 @@ const groceryList = [
   }
 ]
 
+router.use((req, res, next) => {
+  if (req.session.user) next()
+  else res.sendStatus(401)
+})
+
 router.get("/", (req, res) => {
   
-  res.cookie("visited", true, {
-    maxAge: 60000,
-  })
+  // res.cookie("visited", true, {
+  //   maxAge: 60000,
+  // })
   res.send(groceryList)
 })
 
