@@ -14,8 +14,9 @@ const groceryList = [
 ]
 
 router.get("/", (req, res) => {
+  
   res.cookie("visited", true, {
-    maxAge: 10000,
+    maxAge: 60000,
   })
   res.send(groceryList)
 })
@@ -23,6 +24,9 @@ router.get("/", (req, res) => {
 //Route Parameters /:item NOTE: A route parameter always prefix with a colon
 router.get("/:item", (req, res) => {
   // console.log(req.params.item)
+  console.log(req.cookies) //The result of this is will not become undefined if you install cookie-parser
+
+  // console.log(req.headers.cookie) //getting the raw cookie
   const { item } = req.params
   const groceryItem = groceryList.find(g => g.item === item)
   res.send(groceryItem)
