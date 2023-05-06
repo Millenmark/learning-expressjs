@@ -13,6 +13,7 @@ app.use("/api/groceries", groceryRoute)
 app.use("/api/markets", marketRoute)
 
 
+
 app.listen(PORT, () => console.log(`Running express server on port: ${PORT}`))
 
 
